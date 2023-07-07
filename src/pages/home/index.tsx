@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { api } from '../../services/api'
 import { BsCartPlus } from 'react-icons/bs'
+import { CartContext } from '../../contexts/CartContext'
 
-interface ProductProps {
+export interface ProductProps {
     id: number,
     title: any,
     description: any,
@@ -11,7 +12,7 @@ interface ProductProps {
 }
 
 export function Home() {
-
+    const { addItemCart } = useContext(CartContext)
     const [products, setProducts] = useState<ProductProps[]>([])
 
     useEffect(() => {
@@ -25,7 +26,7 @@ export function Home() {
     }, [])
 
     function handleAddCartItem(product: ProductProps){
-        console.log(product)
+        addItemCart(product)
     }
 
     return (
