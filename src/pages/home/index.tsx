@@ -3,6 +3,7 @@ import { api } from '../../services/api'
 import { BsCartPlus } from 'react-icons/bs'
 import { CartContext } from '../../contexts/CartContext'
 import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 export interface ProductProps {
     id: number,
@@ -31,6 +32,8 @@ export function Home() {
         addItemCart(product)
     }
 
+    const navigate = useNavigate()
+
     return (
         <div>
             <main className="w-full max-w-7xl px-4 mx-auto">
@@ -41,9 +44,9 @@ export function Home() {
                         return (
                             <section key={product.id} className="w-full">
                                 <img src={product.cover} alt="Logo produto"
-                                    className='w-full rounded-lg max-h-70 mb-2'
+                                    className='w-full rounded-lg max-h-70 mb-2 cursor-pointer' onClick={() => navigate(`/products/${product.id}`)}
                                 />
-                                <p className='font-medium mt-2 mb-2'>{product.title}</p>
+                                <p className='font-medium mt-2 mb-2 cursor-pointer' onClick={() => navigate(`/products/${product.id}`)}>{product.title}</p>
 
                                 <div className='flex gap-3 items-center'>
                                     <strong className='text-zinc-700/90'>
