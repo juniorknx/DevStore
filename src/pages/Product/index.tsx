@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react"
 import { api } from "../../services/api"
 import { BsCartPlus } from 'react-icons/bs'
 import { CartContext } from "../../contexts/CartContext"
+import { toast } from "react-hot-toast"
 
 interface ProductDetail {
     id: number,
@@ -34,7 +35,8 @@ export function ProductPage() {
         loadProductDetail();
     }, [])
 
-    function handleBuyItem(product: any){
+    function handleBuyItem(product: any) {
+        toast.success('Produto adicionado no carrinho.')
         addItemCart(product)
     }
 
